@@ -35,60 +35,55 @@ class ViewController: UIViewController {
     }
 
     @IBAction func tappedAdditionButton(_ sender: UIButton) {
-        if calculator.canAddOperator {
+        guard calculator.canAddOperator else {
+            return presentAlert(with: "Un operateur est déja mis !")
+        }
             calculator.addOperator("+")
             updateUI()
-        } else {
-            let alertVC = UIAlertController(
-                title: "Zéro!",
-                message: "Un operateur est déja mis !",
-                preferredStyle: .alert
-            )
-            alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-            self.present(alertVC, animated: true, completion: nil)
         }
-    }
 
     @IBAction func tappedSubstractionButton(_ sender: UIButton) {
-        if calculator.canAddOperator {
+        guard calculator.canAddOperator else {
+            return presentAlert(with: "Un operateur est déja mis !")
+        }
             calculator.addOperator("-")
             updateUI()
-        } else {
-            let alertVC = UIAlertController(
-                title: "Zéro!",
-                message: "Un operateur est déja mis !",
-                preferredStyle: .alert)
-            alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-            self.present(alertVC, animated: true, completion: nil)
-        }
     }
 
     @IBAction func tappedMultiplyButton(_ sender: UIButton) {
+        guard calculator.canAddOperator else {
+            return presentAlert(with: "Un operateur est déja mis !")
+        }
+            calculator.addOperator("×")
+            updateUI()
     }
 
     @IBAction func tappedDivideButton(_ sender: UIButton) {
+        guard calculator.canAddOperator else {
+            return presentAlert(with: "Un operateur est déja mis !")
+        }
+            calculator.addOperator("÷")
+            updateUI()
     }
 
     @IBAction func tappedEqualButton(_ sender: UIButton) {
         guard calculator.expressionIsCorrect else {
-            let alertVC = UIAlertController(
-                title: "Zéro!",
-                message: "Entrez une expression correcte !",
-                preferredStyle: .alert)
-            alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-            return self.present(alertVC, animated: true, completion: nil)
+            return presentAlert(with: "Entrez une expression correcte !")
         }
 
         guard calculator.hasEnoughElements else {
-            let alertVC = UIAlertController(
-                title: "Zéro!",
-                message: "Démarrez un nouveau calcul !",
-                preferredStyle: .alert)
-            alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-            return self.present(alertVC, animated: true, completion: nil)
+            return presentAlert(with: "Démarrez un nouveau calcul !")
         }
         calculator.compute()
         updateUI()
     }
 
+    fileprivate func presentAlert(with message: String) {
+        let alertVC = UIAlertController(
+            title: "Erreur",
+            message: message,
+            preferredStyle: .alert)
+        alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        return self.present(alertVC, animated: true, completion: nil)
+    }
 }

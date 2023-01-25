@@ -72,6 +72,18 @@ class SimpleCalcTests: XCTestCase {
         calc.display = "1 + "
 
         XCTAssertEqual(calc.canAddOperator, false)
+        
+        calc.display = "1 - "
+
+        XCTAssertEqual(calc.canAddOperator, false)
+        
+        calc.display = "1 × "
+
+        XCTAssertEqual(calc.canAddOperator, false)
+        
+        calc.display = "1 ÷ "
+
+        XCTAssertEqual(calc.canAddOperator, false)
     }
 
     func testGivenDisplayIsNotEmptyAndHasNumberAndAnOperator_WhenAddingOperator_ThenDisplayCannotHaveNewOperator() {
@@ -108,5 +120,17 @@ class SimpleCalcTests: XCTestCase {
         calc.compute()
 
         XCTAssertEqual(calc.display, "2 - 1 = 1")
+
+        calc.display = "2 × 1"
+
+        calc.compute()
+
+        XCTAssertEqual(calc.display, "2 × 1 = 2")
+
+        calc.display = "2 ÷ 1"
+
+        calc.compute()
+
+        XCTAssertEqual(calc.display, "2 ÷ 1 = 2")
     }
 }

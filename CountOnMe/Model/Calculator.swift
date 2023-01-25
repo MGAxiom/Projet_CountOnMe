@@ -18,7 +18,7 @@ class Calculator {
         return display.firstIndex(of: "=") != nil
     }
     var canAddOperator: Bool {
-        return elements.last != "+" && elements.last != "-"
+        return elements.last != "+" && elements.last != "-" && elements.last != "×" && elements.last != "÷"
     }
     var hasEnoughElements: Bool {
         return elements.count >= 3
@@ -36,12 +36,7 @@ class Calculator {
     }
 
     func addOperator(_ newOperator: String) {
-        if canAddOperator {
-//            display += " \(newOperator) "
             display.append(" \(newOperator) ")
-        } else {
-            print("Cannot add another operator.")
-        }
     }
 
     func compute() {
@@ -57,6 +52,8 @@ class Calculator {
             switch operand {
             case "+": result = left + right
             case "-": result = left - right
+            case "×": result = left * right
+            case "÷": result = left / right
             default: fatalError("Unknown operator !")
             }
 

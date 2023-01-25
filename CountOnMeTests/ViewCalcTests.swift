@@ -16,11 +16,11 @@ final class ViewCalcTests: XCTestCase {
     // MARK: - Setup
     override func setUp() {
         super.setUp()
-        
-        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        controller = storyboard.instantiateInitialViewController() as! ViewController
+
+//        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+//        controller = storyboard.instantiateInitialViewController() as! ViewController
     }
-    
+
     override func tearDown() {
             super.tearDown()
 
@@ -29,7 +29,7 @@ final class ViewCalcTests: XCTestCase {
 
     // MARK: - Tests
     func testGivenDisplayIsEmpty_WhenTappingNumberButton_ThenDisplayContainsTheNumberOfButton() {
-        let _ = controller.view
+        _ = controller.view
         controller.tappedNumberButton(controller.numberButtons[1])
 
         XCTAssertEqual(controller.textView.text, "1")
