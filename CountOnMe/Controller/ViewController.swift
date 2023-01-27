@@ -23,6 +23,20 @@ class ViewController: UIViewController {
 
     func updateUI() {
         textView.text = calculator.display
+        textView.scrollToBotom()
+    }
+
+    @IBAction func clearAll(_ sender: UIButton) {
+        calculator.clearAll()
+        updateUI()
+    }
+
+    @IBAction func removeLastEntry(_ sender: UIButton) {
+        guard calculator.hasResult == false else {
+            return presentAlert(with: "Commencez un nouveau calcul !")
+        }
+        calculator.removeEntry()
+        updateUI()
     }
 
     // View actions
@@ -34,36 +48,17 @@ class ViewController: UIViewController {
         updateUI()
     }
 
-    @IBAction func tappedAdditionButton(_ sender: UIButton) {
-        guard calculator.canAddOperator else {
-            return presentAlert(with: "Un operateur est déja mis !")
-        }
-            calculator.addOperator("+")
-            updateUI()
+    @IBAction func tappedOperatorButton(_ sender: UIButton) {
+        guard let operatorText = sender.title(for: .normal) else {
+            return
         }
 
-    @IBAction func tappedSubstractionButton(_ sender: UIButton) {
         guard calculator.canAddOperator else {
-            return presentAlert(with: "Un operateur est déja mis !")
-        }
-            calculator.addOperator("-")
-            updateUI()
-    }
+                    return presentAlert(with: "Un opérateur a déjà été ajouté.")
 
-    @IBAction func tappedMultiplyButton(_ sender: UIButton) {
-        guard calculator.canAddOperator else {
-            return presentAlert(with: "Un operateur est déja mis !")
         }
-            calculator.addOperator("×")
-            updateUI()
-    }
-
-    @IBAction func tappedDivideButton(_ sender: UIButton) {
-        guard calculator.canAddOperator else {
-            return presentAlert(with: "Un operateur est déja mis !")
-        }
-            calculator.addOperator("÷")
-            updateUI()
+        calculator.addOperator(operatorText)
+        updateUI()
     }
 
     @IBAction func tappedEqualButton(_ sender: UIButton) {
@@ -73,6 +68,10 @@ class ViewController: UIViewController {
 
         guard calculator.hasEnoughElements else {
             return presentAlert(with: "Démarrez un nouveau calcul !")
+        }
+
+        guard !calculator.isImpossibleToDivide else {
+            return presentAlert(with: "Impossible de diviser par zéro")
         }
         calculator.compute()
         updateUI()

@@ -16,6 +16,8 @@
 		1FA43BF3224E569A00F565CB /* SimpleCalcUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA43BF2224E569A00F565CB /* SimpleCalcUITests.swift */; };
 		8950300629799D9D00B9B9A3 /* Calculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8950300529799D9D00B9B9A3 /* Calculator.swift */; };
 		8952BF0B297ED211005407B4 /* ViewCalcTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8952BF0A297ED211005407B4 /* ViewCalcTests.swift */; };
+		8952BF102982C3AF005407B4 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8952BF0F2982C3AF005407B4 /* Double.swift */; };
+		8952BF122982FBEE005407B4 /* ScrollTextExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8952BF112982FBEE005407B4 /* ScrollTextExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,8 @@
 		1FA43BF4224E569A00F565CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8950300529799D9D00B9B9A3 /* Calculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calculator.swift; sourceTree = "<group>"; };
 		8952BF0A297ED211005407B4 /* ViewCalcTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCalcTests.swift; sourceTree = "<group>"; };
+		8952BF0F2982C3AF005407B4 /* Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
+		8952BF112982FBEE005407B4 /* ScrollTextExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollTextExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,12 +159,22 @@
 		893FB2512978406A008A42AE /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				8952BF0E2982C38E005407B4 /* Extension */,
 				1FA43BDE224E569A00F565CB /* Info.plist */,
 				1FA43BDB224E569A00F565CB /* LaunchScreen.storyboard */,
 				1FA43BD9224E569A00F565CB /* Assets.xcassets */,
 				1FA43BD2224E569900F565CB /* AppDelegate.swift */,
 			);
 			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		8952BF0E2982C38E005407B4 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				8952BF0F2982C3AF005407B4 /* Double.swift */,
+				8952BF112982FBEE005407B4 /* ScrollTextExtension.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -316,8 +330,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8952BF122982FBEE005407B4 /* ScrollTextExtension.swift in Sources */,
 				1FA43BD5224E569900F565CB /* ViewController.swift in Sources */,
 				1FA43BD3224E569900F565CB /* AppDelegate.swift in Sources */,
+				8952BF102982C3AF005407B4 /* Double.swift in Sources */,
 				8950300629799D9D00B9B9A3 /* Calculator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

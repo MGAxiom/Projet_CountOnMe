@@ -10,16 +10,23 @@ import Foundation
 
 class Calculator {
 
-    var display: String = ""
+    var display: String = "1 + 1 = 2"
     var elements: [String] {
         return display.split(separator: " ").map { "\($0)" }
     }
+
     var hasResult: Bool {
         return display.firstIndex(of: "=") != nil
     }
+
+    var isImpossibleToDivide: Bool {
+            return display.contains(" ÷ 0")
+    }
+
     var canAddOperator: Bool {
         return elements.last != "+" && elements.last != "-" && elements.last != "×" && elements.last != "÷"
     }
+
     var hasEnoughElements: Bool {
         return elements.count >= 3
     }
@@ -27,6 +34,17 @@ class Calculator {
     var expressionIsCorrect: Bool {
         return elements.last != "+" && elements.last != "-"
     }
+
+    func clearAll() {
+        display.removeAll(keepingCapacity: true)
+    }
+
+    func removeEntry() {
+        if elements.last == "+" || elements.last == "-" || elements.last == "×" || elements.last == "÷" {
+            display.remove
+        } else {
+            display.removeLast()
+        }
 
     func addNumber(_ number: String) {
         if hasResult {
@@ -42,23 +60,41 @@ class Calculator {
     func compute() {
         var operationsToReduce = elements
 
+        for index in stride(from: operationsToReduce.count-2, to: 0, by: -1) {
+            if operationsToReduce[index] == "×" || operationsToReduce[index] == "÷" {
+
+                let left = Double(operationsToReduce[index-1])!
+                let operand = operationsToReduce[index]
+                let right = Double(operationsToReduce[index+1])!
+
+                var result: Double = 0
+                switch operand {
+                case "×": result = left * right
+                case "÷": result = left / right
+                default: print("Unknown operator !")
+                }
+
+                operationsToReduce.remove(at: index+1)
+                operationsToReduce.remove(at: index)
+                operationsToReduce.remove(at: index-1)
+                operationsToReduce.insert("\(result)", at: index-1)
+            }
+        }
         // Iterate over operations while an operand still here
         while operationsToReduce.count > 1 {
-            let left = Int(operationsToReduce[0])!
+            let left = Double(operationsToReduce[0])!
             let operand = operationsToReduce[1]
-            let right = Int(operationsToReduce[2])!
+            let right = Double(operationsToReduce[2])!
 
-            let result: Int
+            var result: Double = 0
             switch operand {
             case "+": result = left + right
             case "-": result = left - right
-            case "×": result = left * right
-            case "÷": result = left / right
-            default: fatalError("Unknown operator !")
+            default: print("Unknown operator !")
             }
 
             operationsToReduce = Array(operationsToReduce.dropFirst(3))
-            operationsToReduce.insert("\(result)", at: 0)
+            operationsToReduce.insert("\(result.clean)", at: 0)
         }
         display.append(" = \(operationsToReduce.first!)")
     }
