@@ -20,7 +20,7 @@ class Calculator {
     }
 
     var isImpossibleToDivide: Bool {
-            return display.contains(" ÷ 0")
+        return display.contains(" ÷ 0")
     }
 
     var canAddOperator: Bool {
@@ -41,60 +41,44 @@ class Calculator {
 
     func removeEntry() {
         if elements.last == "+" || elements.last == "-" || elements.last == "×" || elements.last == "÷" {
-            display.remove
+            display.removeLast(3)
         } else {
             display.removeLast()
         }
+    }
 
-    func addNumber(_ number: String) {
-        if hasResult {
-            display = ""
+        func addNumber(_ number: String) {
+            if hasResult {
+                display = ""
+            }
+            display.append(number)
         }
-        display.append(number)
-    }
 
-    func addOperator(_ newOperator: String) {
+        func addOperator(_ newOperator: String) {
             display.append(" \(newOperator) ")
-    }
+        }
 
     func compute() {
         var operationsToReduce = elements
+        let possibleOperands = [["÷", "×"], ["+", "-"]]
 
-        for index in stride(from: operationsToReduce.count-2, to: 0, by: -1) {
-            if operationsToReduce[index] == "×" || operationsToReduce[index] == "÷" {
-
-                let left = Double(operationsToReduce[index-1])!
-                let operand = operationsToReduce[index]
-                let right = Double(operationsToReduce[index+1])!
+        for operands in possibleOperands {
+            while let operandIndex = operationsToReduce.firstIndex(where: {operands.contains($0)}) {
+                let left = Double(operationsToReduce[operandIndex-1])!
+                let right = Double(operationsToReduce[operandIndex+1])!
 
                 var result: Double = 0
-                switch operand {
-                case "×": result = left * right
+                switch operationsToReduce[operandIndex] {
                 case "÷": result = left / right
-                default: print("Unknown operator !")
+                case "×": result = left * right
+                case "+": result = left + right
+                case "-": result = left - right
+                default: break
                 }
 
-                operationsToReduce.remove(at: index+1)
-                operationsToReduce.remove(at: index)
-                operationsToReduce.remove(at: index-1)
-                operationsToReduce.insert("\(result)", at: index-1)
+                operationsToReduce.replaceSubrange((operandIndex-1)...(operandIndex+1), with: ["\(result.clean)"])
+                print(operationsToReduce)
             }
-        }
-        // Iterate over operations while an operand still here
-        while operationsToReduce.count > 1 {
-            let left = Double(operationsToReduce[0])!
-            let operand = operationsToReduce[1]
-            let right = Double(operationsToReduce[2])!
-
-            var result: Double = 0
-            switch operand {
-            case "+": result = left + right
-            case "-": result = left - right
-            default: print("Unknown operator !")
-            }
-
-            operationsToReduce = Array(operationsToReduce.dropFirst(3))
-            operationsToReduce.insert("\(result.clean)", at: 0)
         }
         display.append(" = \(operationsToReduce.first!)")
     }

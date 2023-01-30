@@ -27,6 +27,8 @@ class SimpleCalcTests: XCTestCase {
 //    }
 
     func testAddingNewNumber() {
+        calc.display = ""
+
         calc.addNumber("1")
 
         XCTAssertEqual(calc.display, "1")
@@ -131,13 +133,13 @@ class SimpleCalcTests: XCTestCase {
 
         calc.compute()
 
-        XCTAssertEqual(calc.display, "2 × 1 = 2.0")
+        XCTAssertEqual(calc.display, "2 × 1 = 2")
 
         calc.display = "2 ÷ 1"
 
         calc.compute()
 
-        XCTAssertEqual(calc.display, "2 ÷ 1 = 2.0")
+        XCTAssertEqual(calc.display, "2 ÷ 1 = 2")
     }
 
     func testDisplayCanRemoveElements() {
@@ -146,6 +148,12 @@ class SimpleCalcTests: XCTestCase {
         calc.removeEntry()
 
         XCTAssertEqual(calc.display, "10 + 10")
+
+        calc.display = "10 + "
+
+        calc.removeEntry()
+
+        XCTAssertEqual(calc.display, "10")
     }
 
     func testDisplayHasLostAllElements() {
@@ -154,5 +162,13 @@ class SimpleCalcTests: XCTestCase {
         calc.clearAll()
 
         XCTAssertEqual(calc.display, "")
+    }
+
+    func testOperatorPrecedence() {
+        calc.display = "78 ÷ 12 ÷ 45"
+
+        calc.compute()
+
+        XCTAssertNotEqual(calc.display, "78 ÷ 12 ÷ 45 = 292.5")
     }
 }

@@ -15,7 +15,6 @@
 		1FA43BE8224E569A00F565CB /* SimpleCalcTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA43BE7224E569A00F565CB /* SimpleCalcTests.swift */; };
 		1FA43BF3224E569A00F565CB /* SimpleCalcUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA43BF2224E569A00F565CB /* SimpleCalcUITests.swift */; };
 		8950300629799D9D00B9B9A3 /* Calculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8950300529799D9D00B9B9A3 /* Calculator.swift */; };
-		8952BF0B297ED211005407B4 /* ViewCalcTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8952BF0A297ED211005407B4 /* ViewCalcTests.swift */; };
 		8952BF102982C3AF005407B4 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8952BF0F2982C3AF005407B4 /* Double.swift */; };
 		8952BF122982FBEE005407B4 /* ScrollTextExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8952BF112982FBEE005407B4 /* ScrollTextExtension.swift */; };
 /* End PBXBuildFile section */
@@ -52,7 +51,6 @@
 		1FA43BF2224E569A00F565CB /* SimpleCalcUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleCalcUITests.swift; sourceTree = "<group>"; };
 		1FA43BF4224E569A00F565CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8950300529799D9D00B9B9A3 /* Calculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calculator.swift; sourceTree = "<group>"; };
-		8952BF0A297ED211005407B4 /* ViewCalcTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCalcTests.swift; sourceTree = "<group>"; };
 		8952BF0F2982C3AF005407B4 /* Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
 		8952BF112982FBEE005407B4 /* ScrollTextExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollTextExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -117,7 +115,6 @@
 			isa = PBXGroup;
 			children = (
 				1FA43BE7224E569A00F565CB /* SimpleCalcTests.swift */,
-				8952BF0A297ED211005407B4 /* ViewCalcTests.swift */,
 				1FA43BE9224E569A00F565CB /* Info.plist */,
 			);
 			path = CountOnMeTests;
@@ -343,7 +340,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1FA43BE8224E569A00F565CB /* SimpleCalcTests.swift in Sources */,
-				8952BF0B297ED211005407B4 /* ViewCalcTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

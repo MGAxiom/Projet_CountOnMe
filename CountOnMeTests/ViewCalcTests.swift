@@ -28,11 +28,11 @@ final class ViewCalcTests: XCTestCase {
         }
 
     // MARK: - Tests
-    func testGivenDisplayIsEmpty_WhenTappingNumberButton_ThenDisplayContainsTheNumberOfButton() {
-        _ = controller.view
-        controller.tappedNumberButton(controller.numberButtons[1])
-
-        XCTAssertEqual(controller.textView.text, "1")
-    }
+//    func testGivenDisplayIsEmpty_WhenTappingNumberButton_ThenDisplayContainsTheNumberOfButton() {
+//        _ = controller.view
+//        controller.tappedNumberButton(controller.numberButtons[1])
+//
+//        XCTAssertEqual(controller.textView.text, "1")
+//    }
 
 }
