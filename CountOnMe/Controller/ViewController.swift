@@ -21,16 +21,19 @@ class ViewController: UIViewController {
         updateUI()
     }
 
+    // Method used to pair the display into our model to the textView of the controller, also scrolls to the bottom of the textView when needed
     func updateUI() {
         textView.text = calculator.display
-        textView.scrollToBotom()
+        textView.scrollToBottom()
     }
 
+    // IBaction linked to the AC button and clearAll method, removes every entry in textView
     @IBAction func clearAll(_ sender: UIButton) {
         calculator.clearAll()
         updateUI()
     }
 
+    // IBAction linked to remove button and removeEntry method, clears the last element
     @IBAction func removeLastEntry(_ sender: UIButton) {
         guard calculator.hasResult == false else {
             return presentAlert(with: "Commencez un nouveau calcul !")
@@ -39,7 +42,7 @@ class ViewController: UIViewController {
         updateUI()
     }
 
-    // View actions
+    // IBAction linked to all numberButtons, adds the number to the textView matching the button's title
     @IBAction func tappedNumberButton(_ sender: UIButton) {
         guard let numberText = sender.title(for: .normal) else {
             return
@@ -48,6 +51,7 @@ class ViewController: UIViewController {
         updateUI()
     }
 
+    // IBAction linked to all operatorsButton, adds the operator to the textView matching the button's title
     @IBAction func tappedOperatorButton(_ sender: UIButton) {
         guard let operatorText = sender.title(for: .normal) else {
             return
@@ -61,6 +65,7 @@ class ViewController: UIViewController {
         updateUI()
     }
 
+    // IBAction linked to the "=" button, computes if it has the proper requirements, displaying the result at the end of the textView
     @IBAction func tappedEqualButton(_ sender: UIButton) {
         guard calculator.expressionIsCorrect else {
             return presentAlert(with: "Entrez une expression correcte !")
@@ -77,6 +82,7 @@ class ViewController: UIViewController {
         updateUI()
     }
 
+    // Method used only in the controller to present different error messages depending on the situation
     fileprivate func presentAlert(with message: String) {
         let alertVC = UIAlertController(
             title: "Erreur",

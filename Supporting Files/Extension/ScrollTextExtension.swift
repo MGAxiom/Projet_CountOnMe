@@ -10,9 +10,10 @@ import Foundation
 
 import UIKit
 
+// Extension used to scroll the textView to its bottom when the elements are added of screen
 extension UITextView {
 
-    func scrollToBotom() {
+    func scrollToBottom() {
         let range = NSRange(location: text.count - 1, length: 1)
         scrollRangeToVisible(range)
     }

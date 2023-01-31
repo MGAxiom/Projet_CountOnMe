@@ -92,6 +92,10 @@ class SimpleCalcTests: XCTestCase {
         calc.display = "1 ÷ "
 
         XCTAssertEqual(calc.canAddOperator, false)
+
+        calc.display = "1 + 1 = 2"
+
+        XCTAssertEqual(calc.canAddOperator, false)
     }
 
     func testAddingNewOperator() {
