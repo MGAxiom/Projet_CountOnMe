@@ -30,7 +30,7 @@ class Calculator {
 
     // Returns true if an operator or equal is the last element being added or present
     var canAddOperator: Bool {
-        return elements.last != "+" && elements.last != "-" && elements.last != "×" && elements.last != "÷" && !hasResult
+    return elements.last != "+" && elements.last != "-" && elements.last != "×" && elements.last != "÷" && !hasResult
     }
 
     // Returns true if the number of elements is equal or greater than 3, minimum required to compute
@@ -57,7 +57,7 @@ class Calculator {
         }
     }
 
-        // Method used to add a number using the UIButton's title, removes everything from display if it already has a result
+        // Adds a number using the UIButton's title, removes everything from display if it already has a result
         func addNumber(_ number: String) {
             if hasResult {
                 display = ""
@@ -65,12 +65,12 @@ class Calculator {
             display.append(number)
         }
 
-        // Method used to add an operator using the UIButton's title, whitespaces are added left and right of the operator
+        // Adds an operator using the UIButton's title, whitespaces are added left and right of the operator
         func addOperator(_ newOperator: String) {
             display.append(" \(newOperator) ")
         }
 
-    // Method used to compute any valid operation, iterates over the elements, first computing operation(s) with "÷" and "×", then "+" and "-"
+    // Computes any valid operation, iterates over the elements, first with operation(s) with "÷" and "×", then "+", "-"
     func compute() {
         var operationsToReduce = elements
         let possibleOperands = [["÷", "×"], ["+", "-"]]

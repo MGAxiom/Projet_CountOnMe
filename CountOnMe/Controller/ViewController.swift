@@ -10,7 +10,6 @@ import UIKit
 
 class ViewController: UIViewController {
     @IBOutlet weak var textView: UITextView!
-    @IBOutlet var numberButtons: [UIButton]!
 
     var calculator = Calculator()
 
@@ -21,7 +20,7 @@ class ViewController: UIViewController {
         updateUI()
     }
 
-    // Method used to pair the display into our model to the textView of the controller, also scrolls to the bottom of the textView when needed
+    // Pairs the display to the textView of the controller, and scrolls at the bottom of the textView when needed
     func updateUI() {
         textView.text = calculator.display
         textView.scrollToBottom()
@@ -36,7 +35,11 @@ class ViewController: UIViewController {
     // IBAction linked to remove button and removeEntry method, clears the last element
     @IBAction func removeLastEntry(_ sender: UIButton) {
         guard calculator.hasResult == false else {
-            return presentAlert(with: "Commencez un nouveau calcul !")
+            return presentAlert(with: "Start a new operation !")
+        }
+
+        guard calculator.display != "" else {
+            return presentAlert(with: "Start a new operation !")
         }
         calculator.removeEntry()
         updateUI()
@@ -58,25 +61,25 @@ class ViewController: UIViewController {
         }
 
         guard calculator.canAddOperator else {
-                    return presentAlert(with: "Un opérateur a déjà été ajouté.")
+                    return presentAlert(with: "An operator as already been added !")
 
         }
         calculator.addOperator(operatorText)
         updateUI()
     }
 
-    // IBAction linked to the "=" button, computes if it has the proper requirements, displaying the result at the end of the textView
+    // IBAction linked to the "=" button, computes operations and displays result at the end of the textView
     @IBAction func tappedEqualButton(_ sender: UIButton) {
         guard calculator.expressionIsCorrect else {
-            return presentAlert(with: "Entrez une expression correcte !")
+            return presentAlert(with: "Your expression isn't valid !")
         }
 
         guard calculator.hasEnoughElements else {
-            return presentAlert(with: "Démarrez un nouveau calcul !")
+            return presentAlert(with: "Start a new operation !")
         }
 
         guard !calculator.isImpossibleToDivide else {
-            return presentAlert(with: "Impossible de diviser par zéro")
+            return presentAlert(with: "Impossible to divide by nothing !")
         }
         calculator.compute()
         updateUI()
@@ -85,7 +88,7 @@ class ViewController: UIViewController {
     // Method used only in the controller to present different error messages depending on the situation
     fileprivate func presentAlert(with message: String) {
         let alertVC = UIAlertController(
-            title: "Erreur",
+            title: "Error",
             message: message,
             preferredStyle: .alert)
         alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
