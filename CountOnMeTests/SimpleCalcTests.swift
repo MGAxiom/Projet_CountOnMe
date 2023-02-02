@@ -20,13 +20,8 @@ class SimpleCalcTests: XCTestCase {
     }
 
     // MARK: - Tests
-//    func testInit() {
-//
-//        XCTAssertEqual(calc.display, "")
-//        XCTAssertFalse(calc.hasResult)
-//    }
 
-    func testAddingNewNumber() {
+    func testAddingNewNumberIsDisplayed() {
         calc.display = ""
 
         calc.addNumber("1")
@@ -35,28 +30,28 @@ class SimpleCalcTests: XCTestCase {
     }
 
     func testDisplayEmptiesAfterResult() {
-        calc.display = "2+3=5"
+        calc.display = "2 + 3 = 5"
 
         calc.addNumber("1")
 
         XCTAssertEqual(calc.display, "1")
     }
 
-    func testAddingNewNumbers() {
+    func testAddingNewNumberAfterNumberOrOperator() {
         calc.display = "1"
 
         calc.addNumber("2")
 
         XCTAssertEqual(calc.display, "12")
 
-        calc.display = "1+"
+        calc.display = "1 + "
 
         calc.addNumber("2")
 
-        XCTAssertEqual(calc.display, "1+2")
+        XCTAssertEqual(calc.display, "1 + 2")
     }
 
-    func testNewOperatorBeingDisplayed() {
+    func testNewOperatorBeingAddedAndDisplayed() {
         calc.display = "1"
 
         calc.addOperator("+")
@@ -76,7 +71,7 @@ class SimpleCalcTests: XCTestCase {
         XCTAssertTrue(calc.isImpossibleToDivide)
     }
 
-    func testCannotHaveTwoOperators() {
+    func testCannotHaveTwoOperatorsNextToEachOther() {
         calc.display = "1 + "
 
         XCTAssertEqual(calc.canAddOperator, false)
@@ -98,7 +93,7 @@ class SimpleCalcTests: XCTestCase {
         XCTAssertEqual(calc.canAddOperator, false)
     }
 
-    func testAddingNewOperator() {
+    func testAddingNewOperatorNotAddedAfterOtherOperator() {
         calc.display = "1 + "
 
         calc.addOperator("+")
@@ -106,7 +101,7 @@ class SimpleCalcTests: XCTestCase {
         XCTAssertNotEqual(calc.display, "1 + + ")
     }
 
-    func testDisplayExpressionIsCorrect() {
+    func testDisplayUnderstandsWhenExpressionIsCorrect() {
         calc.addNumber("1")
         calc.addOperator("+")
         calc.addNumber("2")
@@ -120,7 +115,7 @@ class SimpleCalcTests: XCTestCase {
         XCTAssertEqual(calc.hasEnoughElements, true)
     }
 
-    func testDisplayHasResult() {
+    func testDisplayUnderstandsResultConcept() {
         calc.display = "1 + 2"
 
         calc.compute()
@@ -146,7 +141,7 @@ class SimpleCalcTests: XCTestCase {
         XCTAssertEqual(calc.display, "2 ÷ 1 = 2")
     }
 
-    func testDisplayCanRemoveElements() {
+    func testCanRemoveOneElementFromDisplay() {
         calc.display = "10 + 100"
 
         calc.removeEntry()
@@ -160,7 +155,7 @@ class SimpleCalcTests: XCTestCase {
         XCTAssertEqual(calc.display, "10")
     }
 
-    func testDisplayHasLostAllElements() {
+    func testDisplayLosesAllElementsAtOnce() {
         calc.display = "10 + 500"
 
         calc.clearAll()

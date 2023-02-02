@@ -90,7 +90,6 @@ class Calculator {
                 }
 
                 operationsToReduce.replaceSubrange((operandIndex-1)...(operandIndex+1), with: ["\(result.clean)"])
-                print(operationsToReduce)
             }
         }
         display.append(" = \(operationsToReduce.first!)")
